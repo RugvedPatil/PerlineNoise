@@ -5,14 +5,21 @@ var z_off = 0;
 var fr;
 var particles = [];
 var flowfield;
+const canvas_div = document.getElementById("canvas_div");
+const frameRate_div = document.getElementById("frame_rate");
 
 function setup()
 {
-    createCanvas(1600, 720);
+    const canvas_width = canvas_div.clientWidth;
+
+    const canvas = createCanvas(canvas_width, 480);
+
+    canvas.parent(canvas_div);
     colorMode(HSB, 255)
     col = floor(width / scl);
     rows = floor(height / scl);
     fr = createP('');
+    fr.parent(frameRate_div);
     flowfield = new Array(col * rows);
 
     for(var i=0; i < 300; i++)
@@ -23,7 +30,7 @@ function setup()
 }       
 
 function draw()
-{
+{  
     var y_off = 0;
 
     fr.html('frame rate = '+ floor(frameRate()));
